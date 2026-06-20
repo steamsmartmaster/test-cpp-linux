@@ -1,4 +1,5 @@
-add_executable(app main.cpp)
+glob_sources_and_headers(APP_SOURCES)
+add_executable(app ${APP_SOURCES})
 
 set_common_settings(app)
 

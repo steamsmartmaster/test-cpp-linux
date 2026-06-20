@@ -1,4 +1,5 @@
-add_library(utf_converter SHARED utf_converter.cpp)
+glob_sources_and_headers(LIB_SOURCES)
+add_library(utf_converter SHARED ${LIB_SOURCES})
 
 set_common_settings(utf_converter)
 

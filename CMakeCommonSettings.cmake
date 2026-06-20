@@ -83,3 +83,17 @@ function(set_common_settings target)
     )
 
 endfunction()
+
+# Helper function to glob all C++ source and header files in the current directory and subdirectories
+function(glob_sources_and_headers out_var)
+    file(GLOB_RECURSE SOURCES_AND_HEADERS 
+        "${CMAKE_CURRENT_LIST_DIR}/*.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/*.c"
+        "${CMAKE_CURRENT_LIST_DIR}/*.cc"
+        "${CMAKE_CURRENT_LIST_DIR}/*.cxx"
+        "${CMAKE_CURRENT_LIST_DIR}/*.h"
+        "${CMAKE_CURRENT_LIST_DIR}/*.hpp"
+        "${CMAKE_CURRENT_LIST_DIR}/*.hxx"
+    )
+    set(${out_var} ${SOURCES_AND_HEADERS} PARENT_SCOPE)
+endfunction()
