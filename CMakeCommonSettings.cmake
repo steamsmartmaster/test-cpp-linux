@@ -17,6 +17,11 @@ function(set_common_settings target)
         $<$<BOOL:${WIN32}>:${globalTag}_WINDOWS_OS=1>
         $<$<BOOL:${UNIX}>:${globalTag}_UNIX_OS=1>
         $<$<PLATFORM_ID:Linux>:${globalTag}_LINUX_OS=1>
+        $<$<PLATFORM_ID:Darwin>:${globalTag}_MACOS_OS=1>
+        $<$<PLATFORM_ID:iOS>:${globalTag}_IOS_OS=1>
+        $<$<PLATFORM_ID:Android>:${globalTag}_ANDROID_OS=1>
+        $<$<PLATFORM_ID:FreeBSD>:${globalTag}_FREEBSD_OS=1>
+        $<$<PLATFORM_ID:OpenBSD>:${globalTag}_OPENBSD_OS=1>
     )
 
     if(isBigEndian)
