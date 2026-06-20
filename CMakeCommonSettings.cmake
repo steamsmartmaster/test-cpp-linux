@@ -50,6 +50,9 @@ function(set_common_settings target)
     "${globalTag}_${target_upper}_EXPORTS=1"
     )
 
+    #include(GenerateExportHeader)
+    #generate_export_header(${target} EXPORT_MACRO_NAME ${globalTag}_${target_upper}_API)
+
     # Enable strict compiler warnings to catch potential issues early
     target_compile_options(${target} PRIVATE 
     "-Wall" 
