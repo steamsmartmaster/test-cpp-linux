@@ -59,12 +59,13 @@ function(set_common_settings target)
     #include(GenerateExportHeader)
     #generate_export_header(${target} EXPORT_MACRO_NAME ${globalTag}_${target_upper}_API)
 
-    # Enable strict compiler warnings across supported compilers to catch potential code quality issues early.
-    # Note: These flags are primarily for GCC/Clang. For MSVC, /W4 is typically preferred instead.
-    target_compile_options(${target} PRIVATE 
-    "-Wall" 
-    "-Wextra" 
-    "-Wpedantic"
+    # Enable strict compiler warnings across supported compilers using generator expressions.
+    # - For GCC/Clang/AppleClang: enable -Wall, -Wextra and -Wpedantic
+    # - For MSVC: use /W4
+    # Using generator expressions ensures the correct flags are applied per-compiler at generate time.
+    target_compile_options(${target} PRIVATE
+        $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:-Wall;-Wextra;-Wpedantic>
+        $<$<CXX_COMPILER_ID:MSVC>:/W4>
     )
 
     # Additional compiler visibility and debug-specific options:
