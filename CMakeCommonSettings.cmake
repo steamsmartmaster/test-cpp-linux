@@ -42,7 +42,7 @@ function(set_common_settings target)
     # Detect the compiler ID using generator expressions and expose it as a preprocessor macro.
     # Useful for conditionally applying compiler-specific workarounds or optimizations in the C++ code.
     target_compile_definitions(${target} PRIVATE
-        $<$<CXX_COMPILER_ID:MSVC>:${globalTag}_MSVC_COMPILER=1>
+        $<$<BOOL:${MSVC}>:${globalTag}_MSVC_COMPILER=1>
         $<$<CXX_COMPILER_ID:GNU>:${globalTag}_GCC_COMPILER=1>
         $<$<CXX_COMPILER_ID:Clang>:${globalTag}_CLANG_COMPILER=1>
     )
