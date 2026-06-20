@@ -13,3 +13,8 @@ if(NOT WIN32)
     target_include_directories(utf_converter PRIVATE ${Iconv_INCLUDE_DIRS})
     target_link_libraries(utf_converter PRIVATE Iconv::Iconv)
 endif()
+
+
+install(TARGETS utf_converter
+    DESTINATION bin
+)
